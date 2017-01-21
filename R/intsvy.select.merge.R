@@ -1,3 +1,12 @@
+dir <- "/Users/cimentadaj/Downloads/PIRLS/2011/PIRLS/Grade 04/Y2011/Data/SPSS" # enter your directory (eg. C:/PIRLS 2011/Data)
+
+folder= dir
+countries= c("AUS", "AUT", "AZE", "BFR")
+student= c("ITSEX", "ASDAGE", "ASBGSMR")
+home= c("ASDHEDUP", "ASDHOCCP", "ASDHELA", "ASBHELA")
+school= c("ACDGDAS", "ACDGCMP", "ACDG03")
+config = intsvy::pirls_conf
+
 intsvy.select.merge <-
 function(folder=getwd(), countries, student=c(), home, school, teacher, use.labels=TRUE,
          config) {
@@ -26,7 +35,7 @@ function(folder=getwd(), countries, student=c(), home, school, teacher, use.labe
   full.names= TRUE, pattern=paste("^", x, ".*.sav$", sep=""), recursive=TRUE))
 
   # Remove empty elements in list
-  files.all <- files.all[lapply(files.all, length) >0]
+  files.all <- files.all[lapply(files.all, length) > 0]
   
   
   # Name list for identification later, rather than using numbers
@@ -56,7 +65,7 @@ function(folder=getwd(), countries, student=c(), home, school, teacher, use.labe
   nchar(y)+config$input$cnt_part[1], nchar(y)+config$input$cnt_part[2])==tolower(x)])) 
   # no blanks, no home instrument, otherwise delete, see 4g function
   
-  files.select <- lapply(files.all, function(x) Filter(function(var) length(var) != 0, x))
+  files.select <- lapply(files.select, function(x) Filter(function(var) length(var) != 0, x))
   
   # Remove cases for no home instruments
   # only if home is specified
