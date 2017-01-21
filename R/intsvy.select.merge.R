@@ -28,7 +28,6 @@ function(folder=getwd(), countries, student=c(), home, school, teacher, use.labe
   # Remove empty elements in list
   files.all <- files.all[lapply(files.all, length) >0]
   
-  
   # Name list for identification later, rather than using numbers
   names(files.all) <- unique(unlist(lapply(files.all, function(x) 
     substr(x, nchar(x)+config$input$type_part[1], nchar(x)+config$input$type_part[2]))))
@@ -55,6 +54,8 @@ function(folder=getwd(), countries, student=c(), home, school, teacher, use.labe
   files.select <- lapply(files.all, function(y) sapply(countries, function(x) y[substr(y, 
   nchar(y)+config$input$cnt_part[1], nchar(y)+config$input$cnt_part[2])==tolower(x)])) 
   # no blanks, no home instrument, otherwise delete, see 4g function
+  
+  files.select <- lapply(files.select, function(x) Filter(function(var) length(var) != 0, x))
   
   # Remove cases for no home instruments
   # only if home is specified
