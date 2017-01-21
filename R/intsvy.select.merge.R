@@ -56,11 +56,8 @@ function(folder=getwd(), countries, student=c(), home, school, teacher, use.labe
   nchar(y)+config$input$cnt_part[1], nchar(y)+config$input$cnt_part[2])==tolower(x)])) 
   # no blanks, no home instrument, otherwise delete, see 4g function
   
-<<<<<<< HEAD
   files.select <- lapply(files.select, function(x) Filter(function(var) length(var) != 0, x))
   
-=======
->>>>>>> parent of 80202ad... Added filtering of directories
   # Remove cases for no home instruments
   # only if home is specified
   if (!missing(home)) {
