@@ -1,12 +1,3 @@
-dir <- "/Users/cimentadaj/Downloads/PIRLS/2011/PIRLS/Grade 04/Y2011/Data/SPSS" # enter your directory (eg. C:/PIRLS 2011/Data)
-
-folder= dir
-countries= c("AUS", "AUT", "AZE", "BFR")
-student= c("ITSEX", "ASDAGE", "ASBGSMR")
-home= c("ASDHEDUP", "ASDHOCCP", "ASDHELA", "ASBHELA")
-school= c("ACDGDAS", "ACDGCMP", "ACDG03")
-config = intsvy::pirls_conf
-
 intsvy.select.merge <-
 function(folder=getwd(), countries, student=c(), home, school, teacher, use.labels=TRUE,
          config) {
