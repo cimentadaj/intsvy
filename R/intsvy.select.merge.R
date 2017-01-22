@@ -54,14 +54,11 @@ function(folder=getwd(), countries, student=c(), home, school, teacher, use.labe
   files.select <- lapply(files.all, function(y) sapply(countries, function(x) y[substr(y, 
   nchar(y)+config$input$cnt_part[1], nchar(y)+config$input$cnt_part[2])==tolower(x)])) 
   # no blanks, no home instrument, otherwise delete, see 4g function
-<<<<<<< HEAD
-  
+
   # Filter directories which have length 0
   files.select <- lapply(files.select, function(x) Filter(function(var) length(var) != 0, x))
   
-=======
 
->>>>>>> upstream/master
   # Remove cases for no home instruments
   # only if home is specified
   if (!missing(home)) {
