@@ -54,11 +54,9 @@ function(folder=getwd(), countries, student=c(), home, school, teacher, use.labe
   files.select <- lapply(files.all, function(y) sapply(countries, function(x) y[substr(y, 
   nchar(y)+config$input$cnt_part[1], nchar(y)+config$input$cnt_part[2])==tolower(x)])) 
   # no blanks, no home instrument, otherwise delete, see 4g function
-
-  # Filter directories which have length 0
+  
   files.select <- lapply(files.select, function(x) Filter(function(var) length(var) != 0, x))
   
-
   # Remove cases for no home instruments
   # only if home is specified
   if (!missing(home)) {
@@ -73,7 +71,7 @@ function(folder=getwd(), countries, student=c(), home, school, teacher, use.labe
   #
   # PREPARING
   #
-
+  
   # Student achievement and background data, 
   # needed also if school is non-missing
   if (!missing(student) | !missing(school)) {
@@ -85,12 +83,12 @@ function(folder=getwd(), countries, student=c(), home, school, teacher, use.labe
       read.spss(y, to.data.frame=TRUE, use.value.labels=use.labels))))
     
     junk0 <- lapply(junk0, function(data) { 
-             names(data) <- toupper(names(data))
-              data
-              })
+      names(data) <- toupper(names(data))
+      data
+    })
     
     student.data <- do.call('rbind', lapply(junk0, function(x) x[, unique(c(config$input$student_colnames1,
-      grep(config$input$student_pattern, names(x), value=TRUE), student, config$input$student_colnames2))]))
+                                                                            grep(config$input$student_pattern, names(x), value=TRUE), student, config$input$student_colnames2))]))
   }
   
   # Home background data
@@ -111,7 +109,6 @@ function(folder=getwd(), countries, student=c(), home, school, teacher, use.labe
     
     home.data <- do.call("rbind", lapply(home.data, function(x)             # Merge [[2]] home
       x[, unique(c(config$input$home_colnames, home))]))
-  
   }
   
   # School data
@@ -119,7 +116,7 @@ function(folder=getwd(), countries, student=c(), home, school, teacher, use.labe
     if (is.null(files.select[[config$input$school]])) {
       stop('cannot locate school data files')
     }
-
+    
     suppressWarnings(suppressMessages(school.data <- lapply(files.select[[config$input$school]],
                                                             function(y) # Read [[2]] school
                                                               read.spss(y, to.data.frame=T, use.value.labels = use.labels))))
@@ -132,7 +129,6 @@ function(folder=getwd(), countries, student=c(), home, school, teacher, use.labe
     
     school.data <- do.call("rbind", lapply(school.data, function(x) # Merge [[2]] home
       x[, unique(c(config$input$school_colnames, school))]))
-    
   }
   
   # Teacher data
